@@ -4,7 +4,6 @@ from .pages.main_page import MainPage
 
 
 MAIN_LINK = "http://selenium1py.pythonanywhere.com/"
-ITEM_LINK = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
 
 
 @pytest.mark.main_page
