@@ -5,7 +5,7 @@ from .pages.login_page import LoginPage
 from .test_main_page import MAIN_LINK
 
 
-# LOGIN_LINK = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
+LOGIN_LINK = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
 
 
 @pytest.mark.login_page
