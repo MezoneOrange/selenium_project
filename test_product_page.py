@@ -110,19 +110,18 @@ def test_guest_can_go_to_login_page_from_product_page (browser):
     login_page.should_be_login_form()
 
 
-@pytest.mark.empty_basket
-def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
-    page = ProductPage(browser, ITEM_LINK_3)
-    page.open()
-    page.go_to_basket_page()
-    basket = BasketPage(browser, browser.current_url)
-    basket.basket_is_empty()
+@pytest.mark.to_basket
+class TestBasketFromProductPage:
+    def test_guest_cant_see_product_in_basket_opened_from_main_page(self, browser):
+        page = ProductPage(browser, ITEM_LINK_3)
+        page.open()
+        page.go_to_basket_page()
+        basket = BasketPage(browser, browser.current_url)
+        basket.basket_is_empty()
 
-
-@pytest.mark.empty_basket
-def test_guest_can_see_basket_empty_message(browser):
-    page = ProductPage(browser, ITEM_LINK_3)
-    page.open()
-    page.go_to_basket_page()
-    basket = BasketPage(browser, browser.current_url)
-    basket.basket_is_empty_text()
+    def test_guest_can_see_basket_empty_message(self, browser):
+        page = ProductPage(browser, ITEM_LINK_3)
+        page.open()
+        page.go_to_basket_page()
+        basket = BasketPage(browser, browser.current_url)
+        basket.basket_is_empty_text()
