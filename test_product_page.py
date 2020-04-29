@@ -4,7 +4,7 @@ from .pages.product_page import ProductPage
 
 
 # ITEM_LINK = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
-# ITEM_LINK_2 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+ITEM_LINK_2 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
 
 
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
@@ -64,3 +64,28 @@ def test_basket_value_and_item_value_should_be_same(browser, link):
     product_page.open()
     product_page.add_to_basket()
     product_page.basket_value_and_item_value_should_be_same()
+
+
+@pytest.mark.xfail
+@pytest.mark.alert_not_present
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    product_page = ProductPage(browser, ITEM_LINK_2)
+    product_page.open()
+    product_page.add_to_basket()
+    product_page.should_not_be_success_message()
+
+
+@pytest.mark.alert_not_present
+def test_guest_cant_see_success_message(browser):
+    product_page = ProductPage(browser, ITEM_LINK_2)
+    product_page.open()
+    product_page.should_not_be_success_message()
+
+
+@pytest.mark.xfail
+@pytest.mark.alert_not_present
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    product_page = ProductPage(browser, ITEM_LINK_2)
+    product_page.open()
+    product_page.add_to_basket()
+    product_page.element_should_be_disappear()
